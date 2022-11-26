@@ -1,7 +1,7 @@
 const Button = ({ onClick }) => {
   return (
     <button
-      class="rounded bg-indigo-500 text-white p-4 w-full"
+      className="rounded bg-indigo-500 text-white p-4 w-full"
       onClick={onClick}
     >
       Pilih pokemon
@@ -9,18 +9,20 @@ const Button = ({ onClick }) => {
   );
 };
 
-const GridLayout = ({ children }) => {
-  return <div className="grid grid-cols-4 gap-4">{children}</div>;
+const PokemonName = ({ name }) => {
+  return <p className="font-bol text-xl mb-2 text-center">{name}</p>;
 };
 
-const Card = ({ name, imageUrl, onClick }) => {
+const Image = ({ imgUrl }) => {
+  return <img src={imgUrl} className="my-4 mx-auto h-32" alt="pokemon" />;
+};
+
+const Card = ({ children }) => {
   return (
     <div className="max-w-sm rounded overflow-hidden shadow-lg p-4">
-      <p class="font-bold text-xl mb-2 text-center">{name}</p>
-      <img src={imageUrl} class="my-4 mx-auto h-32" alt="pokemon" />
-      <Button onClick={onClick} />
+      {children}
     </div>
   );
 };
 
-export { Button, GridLayout, Card };
+export { Button, PokemonName, Card, Image };

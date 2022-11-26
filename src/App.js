@@ -1,9 +1,9 @@
-import PokemonList from "./component/PokemonList";
+import Page from "./component/Page";
 
 function App() {
   return (
     <div className="p-6">
-      <PokemonList />
+      <Page />
     </div>
   );
 }
