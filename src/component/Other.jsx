@@ -25,6 +25,17 @@ const Card = ({ children }) => {
   );
 };
 
+const LoadButton = ({ onClick }) => {
+  return (
+    <button
+      className="rounded bg-yellow-500 text-white p-3 w-full"
+      onClick={onClick}
+    >
+      Tampilkan Lainnya
+    </button>
+  );
+};
+
 const Loading = () => {
   return (
     <div className="flex items-center justify-center text-center w-full h-screen">
@@ -50,4 +61,4 @@ const Loading = () => {
   );
 };
 
-export { Button, PokemonName, Card, Image, Loading };
+export { Button, PokemonName, Card, Image, Loading, LoadButton };

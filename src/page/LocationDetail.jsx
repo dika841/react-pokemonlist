@@ -6,10 +6,13 @@ import { useParams } from "react-router-dom";
 
 const LocationDetail = () => {
   const [loading, setLoading] = useState(false);
-  const [name, setName] = useState("tentacool");
+  const [name, setName] = useState("PIKACHU");
   const [img, setImg] = useState(
-    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/72.svg"
+    "https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/other/dream-world/25.svg"
   );
+  const [type, setType] = useState("Electric");
+  const [attack, setAttack] = useState("55");
+  const [deffence, setDeffence] = useState("40");
   const [data, setData] = useState([]);
   const { id } = useParams();
   const url = "https://pokeapi.co/api/v2/location-area";
@@ -38,6 +41,8 @@ const LocationDetail = () => {
         const pokemons = pokemonLocation.map((el) => ({
           name: el.name,
           imgUrl: el.sprites.other.dream_world.front_default,
+          base: el.stats.map((stat) => stat.base_stat),
+          type: el.types.map((tipe) => tipe.type.name),
         }));
 
         setData(pokemons);
@@ -51,27 +56,46 @@ const LocationDetail = () => {
     fetchData();
   }, [id]);
 
-  const changes = (name, img) => {
+  const changes = (name, img, type, attack, deffence) => {
     setName(name);
     setImg(img);
+    setType(type);
+    setAttack(attack);
+    setDeffence(deffence);
   };
 
   return (
     <>
-      {loading && <Loading />}
-      <Chosen teks={name} img={img} />
-      <PokemonList>
-        {data.map((el, i) => (
-          <Card key={i}>
-            <PokemonName name={el.name} />
-            <Image imgUrl={el.imgUrl} />
-            <Button
-              teks="Pilih Pokemon"
-              onClick={() => changes(el.name, el.imgUrl)}
-            />
-          </Card>
-        ))}
-      </PokemonList>
+      <div className="p-6">
+        {loading && <Loading />}
+        <Chosen
+          name={name}
+          img={img}
+          type={type}
+          attack={attack}
+          deffence={deffence}
+        />
+        <PokemonList>
+          {data.map((el, i) => (
+            <Card key={i}>
+              <PokemonName name={el.name} />
+              <Image imgUrl={el.imgUrl} />
+              <Button
+                teks="Pilih Pokemon"
+                onClick={() =>
+                  changes(
+                    el.name,
+                    el.imgUrl,
+                    el.type[0],
+                    el.base[1],
+                    el.base[2]
+                  )
+                }
+              />
+            </Card>
+          ))}
+        </PokemonList>
+      </div>
     </>
   );
 };
