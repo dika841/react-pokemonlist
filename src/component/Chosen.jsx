@@ -1,4 +1,4 @@
-const Chosen = ({ img, teks }) => {
+const Chosen = ({ img, attack, name, deffence, type }) => {
   return (
     <div
       id="chosen-one"
@@ -6,7 +6,13 @@ const Chosen = ({ img, teks }) => {
     >
       <h2 className="font-bold text-xl mb-2 text-center">Sang Terpilih</h2>
       <img className="my-4 mx-auto h-64" src={img} alt="pokemon" />
-      <p className="font-bold text-xl mb-2 text-center">{teks}</p>
+      <p className="font-bold text-xl mb-2 text-center">{name}</p>
+
+      <div>
+        <p>Type : {type}</p>
+        <p>Attack : {attack}</p>
+        <p>Defence : {deffence}</p>
+      </div>
     </div>
   );
 };
